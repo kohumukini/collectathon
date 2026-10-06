@@ -48,7 +48,7 @@ int main()
     bn::vector<bn::sprite_ptr, MAX_SCORE_CHARS> score_sprites = {};
     bn::sprite_text_generator text_generator(common::fixed_8x16_sprite_font);
 
-    int score = 0;
+    int score{0};
 
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(PLAYER_START_X, PLAYER_START_Y);
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
@@ -73,6 +73,19 @@ int main()
         if (bn::keypad::down_held())
         {
             player.set_y(player.y() + SPEED);
+        }
+
+        if (player.x() > MAX_X) {
+            player.set_x(MIN_X); 
+        }
+        if (player.x() < MIN_X) {
+            player.set_x(MAX_X);
+        }
+        if (player.y() > MAX_Y) {
+            player.set_y(MIN_Y); 
+        }
+        if (player.y() < MIN_Y) {
+            player.set_y(MAX_Y); 
         }
 
         // The bounding boxes of the player and treasure, snapped to integer pixels

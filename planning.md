@@ -16,6 +16,10 @@ A place to write your findings and plans
 
 3. Change the starting pos of the player and dot - Copy `static constexpre int` formatting to create player starting position
 
+4. ? 
+
+5. Set player wraparound to inverse player position if player reaches edges by creating if gates which inverse player x and y coordinates based on criteria
+
 ## Brainstorming game ideas
 
 ## Plan for implementing game
