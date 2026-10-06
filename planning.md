@@ -14,6 +14,8 @@ A place to write your findings and plans
 
 2. Change the backdrop color - Add bn::backdrop::set_color() value before while loop after variable initialization
 
+3. Change the starting pos of the player and dot - Copy `static constexpre int` formatting to create player starting position
+
 ## Brainstorming game ideas
 
 ## Plan for implementing game
