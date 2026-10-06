@@ -8,13 +8,14 @@
 #include <bn_sprite_text_generator.h>
 #include <bn_size.h>
 #include <bn_string.h>
+#include <bn_backdrop.h>
 
 #include "bn_sprite_items_dot.h"
 #include "bn_sprite_items_square.h"
 #include "common_fixed_8x16_font.h"
 
 // Pixels / Frame player moves at
-static constexpr bn::fixed SPEED = 1;
+static constexpr bn::fixed SPEED = 2;
 
 // Width and height of the the player and treasure bounding boxes
 static constexpr bn::size PLAYER_SIZE = {8, 8};
@@ -47,6 +48,8 @@ int main()
 
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(-50, 50);
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
+
+    bn::backdrop::set_color(bn::color(20,0,0));
 
     while (true)
     {

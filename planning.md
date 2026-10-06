@@ -10,6 +10,9 @@ A place to write your findings and plans
 4. Then update the score display + rng, and then update the display. This is within a while loop, which means that these checks happen every frame
 
 ## Planning required changes
+1. Change the player speed - Adjust static speed value
+
+2. Change the backdrop color - Add bn::backdrop::set_color() value before while loop after variable initialization
 
 ## Brainstorming game ideas
 
