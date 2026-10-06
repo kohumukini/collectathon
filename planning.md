@@ -16,9 +16,11 @@ A place to write your findings and plans
 
 3. Change the starting pos of the player and dot - Copy `static constexpre int` formatting to create player starting position
 
-4. ? 
+4. Check if start has been pressed. If so, revert all settings and reset score. 
 
 5. Set player wraparound to inverse player position if player reaches edges by creating if gates which inverse player x and y coordinates based on criteria
+
+6. Store information: Does the player have speedboost? Does the player have speed boost stocks? How long does the player have speed boost? If so, when the player presses `a`, activate speed boost, remove a stock, and create a timer that decrements  by the framerate. 
 
 ## Brainstorming game ideas
 

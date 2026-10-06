@@ -16,6 +16,7 @@
 
 // Pixels / Frame player moves at
 static constexpr bn::fixed SPEED = 2;
+static constexpr bn::fixed BOOSTED_SPEED = 4; 
 
 // Width and height of the the player and treasure bounding boxes
 static constexpr bn::size PLAYER_SIZE = {8, 8};
@@ -49,6 +50,9 @@ int main()
     bn::sprite_text_generator text_generator(common::fixed_8x16_sprite_font);
 
     int score{0};
+    int boost_count{3}; 
+    int base_duration{0}; 
+    bool boosted = false;
 
     bn::sprite_ptr player = bn::sprite_items::square.create_sprite(PLAYER_START_X, PLAYER_START_Y);
     bn::sprite_ptr treasure = bn::sprite_items::dot.create_sprite(0, 0);
@@ -57,22 +61,48 @@ int main()
 
     while (true)
     {
+        if (bn::keypad::a_pressed() && boost_count > 0 && !boosted) {
+            boosted = true; 
+            boost_count--; 
+            base_duration = 180; 
+        }
+
+        if (boosted) {
+            base_duration--;
+            if (base_duration <= 0) {
+                boosted = false; 
+            }
+        }
+
+        if (bn::keypad::start_pressed()) {
+            player.set_x(PLAYER_START_X);
+            player.set_y(PLAYER_START_Y); 
+
+            treasure.set_x(0); 
+            treasure.set_y(0);
+
+            score = 0;
+
+            boost_count = 3; 
+            boosted = false; 
+        }
+
         // Move player with d-pad
         if (bn::keypad::left_held())
         {
-            player.set_x(player.x() - SPEED);
+            player.set_x(player.x() - (boosted? BOOSTED_SPEED : SPEED));
         }
         if (bn::keypad::right_held())
         {
-            player.set_x(player.x() + SPEED);
+            player.set_x(player.x() + (boosted? BOOSTED_SPEED : SPEED));
         }
         if (bn::keypad::up_held())
         {
-            player.set_y(player.y() - SPEED);
+            player.set_y(player.y() - (boosted? BOOSTED_SPEED : SPEED));
         }
         if (bn::keypad::down_held())
         {
-            player.set_y(player.y() + SPEED);
+            player.set_y(player.y() + (boosted? BOOSTED_SPEED : SPEED));
         }
 
         if (player.x() > MAX_X) {
